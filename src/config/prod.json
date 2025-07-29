@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://127.0.0.1:8888",
+  "apiKey": "prod-placeholder-key",
+  "timeout": 30000,
+  "password": "prod@1234"
+}

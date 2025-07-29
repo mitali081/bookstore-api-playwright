@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://127.0.0.1:8000",
+  "apiKey": "qa-placeholder-key",
+  "timeout": 30000,
+  "password": "qa@1234"
+}
