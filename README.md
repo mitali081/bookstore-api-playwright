@@ -221,7 +221,7 @@ bookstore-api-playwright/
 ### 👁️ **View GitHub Actions Reports**
 
 #### **Accessing Reports**
-1. Go to your repository → **Actions** tab
+1. Go to the github repository (https://github.com/mitali081/bookstore-api-playwright.git) → **Actions** tab
 2. Select the latest workflow run
 3. Scroll down to **Artifacts** section
 4. Download the appropriate environment report:
@@ -231,8 +231,8 @@ bookstore-api-playwright/
 
 #### **Report Contents**
 Each artifact contains:
-- **HTML Reports**: `test-output/html-report/` - Interactive test results
-- **Allure Results**: `test-output/allure-results/` - Detailed analytics
+- **HTML Reports**: `test-output/html-report/` - Interactive test results - default playwright reporting with traces
+- **Allure Results**: `test-output/allure-results/` - Detailed analytics using allure reports
 - **Test Artifacts**: `test-output/artifacts/` - Screenshots, videos, traces
 
 #### **Multi-Environment Coverage**
