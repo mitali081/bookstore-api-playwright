@@ -10,7 +10,7 @@ on:
       env:
         description: 'Select environment'
         required: true
-        default: 'qa'
+        default: qa
         type: choice
         options:
           - dev
@@ -63,11 +63,14 @@ jobs:
 
       - name: Upload Test Reports
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: playwright-report-${{ env.ENV }}
           path: |
-            test-output/html-report
-            test-output/artifacts
+            test-output/html-report/
+            test-output/artifacts/
+            test-results/
+          retention-days: 5
 
       - name: Test Results Summary
         if: always()
@@ -78,6 +81,7 @@ jobs:
           echo "Trigger: ${{ github.event_name }}"
           [ -d "test-output/html-report" ] && echo "✅ HTML reports: test-output/html-report"
           [ -d "test-output/artifacts" ] && echo "✅ Artifacts: test-output/artifacts"
+          [ -d "test-results" ] && echo "✅ Test results: test-results"
           echo "=============================="
 
   # Job for manual triggers - runs selected environment only
@@ -120,11 +124,14 @@ jobs:
 
       - name: Upload Test Reports
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: playwright-report-${{ env.ENV }}
           path: |
-            test-output/html-report
-            test-output/artifacts
+            test-output/html-report/
+            test-output/artifacts/
+            test-results/
+          retention-days: 5
 
       - name: Test Results Summary
         if: always()
@@ -138,4 +145,5 @@ jobs:
           fi
           [ -d "test-output/html-report" ] && echo "✅ HTML reports: test-output/html-report"
           [ -d "test-output/artifacts" ] && echo "✅ Artifacts: test-output/artifacts"
+          [ -d "test-results" ] && echo "✅ Test results: test-results"
           echo "=============================="
