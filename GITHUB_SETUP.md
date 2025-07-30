@@ -5,16 +5,16 @@
 Go to your GitHub repository → Settings → Secrets and variables → Actions, and add the following secrets:
 
 ### For Development Environment:
-- `DEV_API_KEY` - Your development API key
-- `DEV_BASE_URL` - Your development base URL (e.g., `http://dev-api.example.com`)
+- `DEV_API_KEY` -  Development API key
+- `DEV_BASE_URL` -  Development base URL (e.g., `http://dev-api.example.com`)
 
 ### For QA Environment:
-- `QA_API_KEY` - Your QA API key  
-- `QA_BASE_URL` - Your QA base URL (e.g., `http://qa-api.example.com`)
+- `QA_API_KEY` -  QA API key  
+- `QA_BASE_URL` -  QA base URL (e.g., `http://qa-api.example.com`)
 
 ### For Production Environment:
-- `PROD_API_KEY` - Your production API key
-- `PROD_BASE_URL` - Your production base URL (e.g., `http://api.example.com`)
+- `PROD_API_KEY` -  Production API key
+- `PROD_BASE_URL` -  Production base URL (e.g., `http://api.example.com`)
 
 ## 2. Push to GitHub
 
