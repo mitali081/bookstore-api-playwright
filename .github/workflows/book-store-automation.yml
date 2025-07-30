@@ -18,71 +18,25 @@ on:
           - prod
 
 jobs:
-  # Job for automatic triggers (push/PR) - runs all environments
-  run-tests-auto:
-    runs-on: ubuntu-latest
-    if: github.event_name != 'workflow_dispatch'
-
-    strategy:
-      matrix:
-        environment: [dev, qa, prod]
-      fail-fast: false
-
-    env:
-      ENV: ${{ matrix.environment }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Cache Node.js modules
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
-
-      - name: Set environment variables
-        run: |
-          echo "ENV=${{ env.ENV }}" >> $GITHUB_ENV
-          echo "Using configuration from src/config/${{ env.ENV }}.json"
-
-      - name: Run Playwright tests
-        run: npx playwright test --reporter=html --reporter=json --reporter=line
-        if: always()
-
-      - name: Upload Test Reports
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: playwright-report-${{ env.ENV }}
-          path: |
-            test-output/html-report/
-            test-output/artifacts/
-            test-results/
-          retention-days: 5
-
-      - name: Test Results Summary
-        if: always()
-        run: |
-          echo "=== Playwright Test Summary for ${{ env.ENV }} ==="
-          echo "Environment: ${{ env.ENV }}"
-          echo "Configuration: src/config/${{ env.ENV }}.json"
-          echo "Trigger: ${{ github.event_name }}"
-          [ -d "test-output/html-report" ] && echo "✅ HTML reports: test-output/html-report"
-          [ -d "test-output/artifacts" ] && echo "✅ Artifacts: test-output/artifacts"
-          [ -d "test-results" ] && echo "✅ Test results: test-results"
-          echo "=============================="
+  # Automatic triggers - commented out to prevent automatic runs
+  # run-tests-auto:
+  #   runs-on: ubuntu-latest
+  #   if: github.event_name != 'workflow_dispatch'
+  #   strategy:
+  #     matrix:
+  #       environment: [dev, qa, prod]
+  #     fail-fast: false
+  #   env:
+  #     ENV: ${{ matrix.environment }}
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '20'
+  #     - name: Install dependencies
+  #       run: npm ci
+  #     - name: Run Playwright tests
+  #       run: npx playwright test --reporter=html --reporter=json --reporter=line
 
   # Job for manual triggers - runs selected environment only
   run-tests-manual:
